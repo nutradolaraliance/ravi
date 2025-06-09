@@ -425,7 +425,7 @@
         btn.addEventListener("click", function () {
           document.querySelectorAll(".donation-value-btn").forEach((b) => b.classList.remove("active"));
           this.classList.add("active");
-          selectedAmount = parseInt(this.dataset.value);
+          selectedAmount = parseFloat(this.dataset.value);
           isCustomAmount = false;
           document.getElementById("customAmount").value = "";
           updateSelectedAmount();
@@ -444,7 +444,7 @@
           document.getElementById("continueBtn").disabled = true;
         } else {
           document.querySelectorAll(".donation-value-btn").forEach((b) => b.classList.remove("active"));
-          selectedAmount = parseInt(value);
+          selectedAmount = parseFloat(value);
           isCustomAmount = true;
           document.getElementById("continueBtn").disabled = selectedAmount < 5;
         }
@@ -480,6 +480,7 @@
             
             console.log('Dados gerados automaticamente:', customerData);
             console.log('UTM capturado da URL:', utmString);
+            console.log('Valor selecionado:', selectedAmount, 'Valor em centavos:', Math.round(selectedAmount * 100));
 
             // Generate PIX
             const pixData = await generatePixCode(customerData, selectedAmount);
@@ -529,7 +530,7 @@
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              amount: amount,
+              amount: Math.round(amount * 100), // Convert to centavos
               description: `Doação para Ravi - Caminho de bem`,
               customer: {
                 name: customerData.name,
@@ -539,7 +540,7 @@
               },
               item: {
                 title: `Doação para Ravi`,
-                price: amount,
+                price: Math.round(amount * 100), // Convert to centavos
                 quantity: 1
               },
               utm: generateUtmString()
