@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💖 Doe para o Ravi - Caminho de bem</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <img src="./images/LLF.png" alt="Caminho de bem" class="logo" />
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="donation-header">
+          <h1 class="donation-title">
+            <i class="fas fa-heart"></i>
+            Ajude o pequeno Ravi a vencer!
+          </h1>
+          <p class="donation-subtitle">
+            Escolha abaixo um valor para transformar a vida do Ravi:
+          </p>
+        </div>
+
+        <!-- Donation Values Grid -->
+        <div class="donation-grid">
+          <button class="donation-value-btn" data-value="20.00">
+            R$ 20,00
+          </button>
+          <button class="donation-value-btn" data-value="25.00">
+            R$ 25,00
+          </button>
+          <button class="donation-value-btn" data-value="40.00">
+            R$ 40,00
+          </button>
+          <button class="donation-value-btn" data-value="60.00">
+            R$ 60,00
+          </button>
+          <button class="donation-value-btn popular" data-value="80.00">
+            <span class="popular-badge">Mais popular</span>
+            R$ 80,00
+          </button>
+          <button class="donation-value-btn" data-value="100.00">
+            R$ 100,00
+          </button>
+          <button class="donation-value-btn" data-value="120.00">
+            R$ 120,00
+          </button>
+          <button class="donation-value-btn" data-value="140.00">
+            R$ 140,00
+          </button>
+          <button class="donation-value-btn" data-value="160.00">
+            R$ 160,00
+          </button>
+          <button class="donation-value-btn" data-value="180.00">
+            R$ 180,00
+          </button>
+          <button class="donation-value-btn" data-value="200.00">
+            R$ 200,00
+          </button>
+          <button class="donation-value-btn" data-value="250.00">
+            R$ 250,00
+          </button>
+          <button class="donation-value-btn" data-value="300.00">
+            R$ 300,00
+          </button>
+          <button class="donation-value-btn" data-value="350.00">
+            R$ 350,00
+          </button>
+          <button class="donation-value-btn" data-value="500.00">
+            R$ 500,00
+          </button>
+          <button class="donation-value-btn" data-value="1000.00">
+            R$ 1.000,00
+          </button>
+        </div>
+
+        <!-- Custom Amount Section -->
+        <div class="custom-amount-section">
+          <h3>Ou digite um valor personalizado:</h3>
+          <div class="custom-input-container">
+            <span class="currency-symbol">R$</span>
+            <input
+              type="number"
+              id="customAmount"
+              placeholder="0,00"
+              min="1"
+              step="0.01"
+              class="custom-amount-input"
+            />
+          </div>
+        </div>
+
+        <!-- Selected Amount Display -->
+        <div class="selected-amount" id="selectedAmount" style="display: none">
+          <p>Valor selecionado: <span id="selectedValue">R$ 0,00</span></p>
+        </div>
+
+        <!-- Continue Button -->
+        <button class="continue-btn" id="continueBtn" disabled>
+          <i class="fas fa-heart"></i>
+          CONTINUAR DOAÇÃO
+          <i class="fas fa-arrow-right"></i>
+        </button>
+
+
+
+        <!-- PIX Payment Interface -->
+        <div class="pix-payment" id="pixPayment" style="display: none;">
+          <div class="payment-header">
+            <h3>
+              <i class="fas fa-copy"></i>
+              Código PIX para sua doação
+            </h3>
+            <p class="payment-amount">Valor: <span id="paymentAmount">R$ 0,00</span></p>
+          </div>
+          
+          <div class="pix-code-section">
+            <div class="pix-code-copy">
+              <label>Copie o código PIX:</label>
+              <div class="pix-code-container">
+                <input type="text" id="pixCodeInput" readonly />
+                <button type="button" id="copyPixCode" class="copy-pix-btn">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="payment-status" id="paymentStatus">
+            <div class="status-checking">
+              <i class="fas fa-spinner fa-spin"></i>
+              <p>Aguardando pagamento...</p>
+              <small>O pagamento será confirmado automaticamente</small>
+            </div>
+          </div>
+
+          <div class="payment-instructions">
+            <div class="instruction-item">
+              <i class="fas fa-mobile-alt"></i>
+              <span>Abra o app do seu banco</span>
+            </div>
+            <div class="instruction-item">
+              <i class="fas fa-copy"></i>
+              <span>Cole o código PIX copiado</span>
+            </div>
+            <div class="instruction-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Confirme o pagamento</span>
+            </div>
+          </div>
+
+          <button class="new-donation-btn" id="newDonationBtn" style="display: none;">
+            <i class="fas fa-arrow-left"></i>
+            FAZER NOVA DOAÇÃO
+          </button>
+        </div>
+
+        <!-- Payment Success -->
+        <div class="payment-success" id="paymentSuccess" style="display: none;">
+          <div class="success-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h3>Doação realizada com sucesso!</h3>
+          <p>Obrigado por ajudar o Ravi! Sua doação faz toda a diferença.</p>
+          <div class="success-amount">
+            Valor doado: <span id="successAmount">R$ 0,00</span>
+          </div>
+          <button class="new-donation-btn" onclick="location.reload()">
+            <i class="fas fa-heart"></i>
+            FAZER NOVA DOAÇÃO
+          </button>
+          <button class="back-home-btn" onclick="window.location.href='index.html'">
+            <i class="fas fa-home"></i>
+            VOLTAR AO INÍCIO
+          </button>
+        </div>
+
+        <!-- Back Link -->
+        <div class="back-link">
+          <a href="index.html">
+            <i class="fas fa-arrow-left"></i>
+            Voltar para a página inicial
+          </a>
+        </div>
+      </main>
+    </div>
+
+    <!-- Footer -->
+      <footer class="footer">
+        <img src="./images/LLF.png" alt="Caminho de bem" class="logo-footer" />
+        <p><strong>Mais formas de fazer a diferença.</strong></p>
+        <p class="footer-text">
+          Sua ajuda vai além do Ravi. Estamos aqui para transformar a vida de
+          muitas crianças que também sofrem em silêncio.
+        </p>
+        <p class="footer-link">
+          <a href="#">Política de privacidade</a>
+        </p>
+        <p class="footer-copyright">
+          © 2024 - Todos os direitos reservados • caminhodebem.com
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      let selectedAmount = 0;
+      let isCustomAmount = false;
+      let currentTransactionId = null;
+      let paymentCheckInterval = null;
+
+      // API Configuration
+      const API_BASE_URL = 'https://api-production-0feb.up.railway.app';
+      const API_ENDPOINTS = {
+        generatePix: '/g5',
+        verifyPayment: '/verify5'
+      };
+
+      // Get URL parameters for UTM tracking
+      function getUrlParameters() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const params = {};
+        
+        // Common UTM parameters
+        const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        
+        // Check for UTM parameters
+        utmParams.forEach(param => {
+          if (urlParams.has(param)) {
+            params[param] = urlParams.get(param);
+          }
+        });
+        
+        // Check for other common tracking parameters
+        if (urlParams.has('ref')) params.ref = urlParams.get('ref');
+        if (urlParams.has('source')) params.source = urlParams.get('source');
+        if (urlParams.has('referrer')) params.referrer = urlParams.get('referrer');
+        
+        return params;
+      }
+
+      // Generate UTM string
+      function generateUtmString() {
+        const params = getUrlParameters();
+        
+        if (Object.keys(params).length === 0) {
+          return 'direct';
+        }
+        
+        // Create UTM string from parameters in key=value format
+        const utmParts = [];
+        
+        // Add UTM parameters
+        if (params.utm_source) utmParts.push(`utm_source=${params.utm_source}`);
+        if (params.utm_medium) utmParts.push(`utm_medium=${params.utm_medium}`);
+        if (params.utm_campaign) utmParts.push(`utm_campaign=${params.utm_campaign}`);
+        if (params.utm_term) utmParts.push(`utm_term=${params.utm_term}`);
+        if (params.utm_content) utmParts.push(`utm_content=${params.utm_content}`);
+        
+        // Add other tracking parameters
+        if (params.ref) utmParts.push(`ref=${params.ref}`);
+        if (params.source) utmParts.push(`source=${params.source}`);
+        if (params.referrer) utmParts.push(`referrer=${params.referrer}`);
+        
+        return utmParts.length > 0 ? utmParts.join('&') : 'direct';
+      }
+
+      // Format currency
+      function formatCurrency(value) {
+        return new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(value);
+      }
+
+      // Generate valid CPF
+      function generateValidCPF() {
+        let cpf = "";
+        
+        // Generate first 9 digits
+        for (let i = 0; i < 9; i++) {
+          cpf += Math.floor(Math.random() * 10);
+        }
+        
+        // Calculate first verification digit
+        let sum = 0;
+        for (let i = 0; i < 9; i++) {
+          sum += parseInt(cpf[i]) * (10 - i);
+        }
+        let firstDigit = 11 - (sum % 11);
+        if (firstDigit >= 10) firstDigit = 0;
+        cpf += firstDigit;
+        
+        // Calculate second verification digit
+        sum = 0;
+        for (let i = 0; i < 10; i++) {
+          sum += parseInt(cpf[i]) * (11 - i);
+        }
+        let secondDigit = 11 - (sum % 11);
+        if (secondDigit >= 10) secondDigit = 0;
+        cpf += secondDigit;
+        
+        return cpf;
+      }
+
+      // Generate random name
+      function generateRandomName() {
+        const firstNames = [
+          'Ana', 'Carlos', 'Maria', 'João', 'Fernanda', 'Pedro', 'Juliana', 'Rafael',
+          'Camila', 'Lucas', 'Beatriz', 'Thiago', 'Larissa', 'Gabriel', 'Mariana',
+          'Diego', 'Priscila', 'Felipe', 'Patrícia', 'Rodrigo', 'Amanda', 'Bruno',
+          'Vanessa', 'Guilherme', 'Cristina', 'André', 'Renata', 'Marcelo', 'Daniela',
+          'Leonardo', 'Carla', 'Ricardo', 'Tatiana', 'Eduardo', 'Roberta'
+        ];
+        
+        const lastNames = [
+          'Silva', 'Santos', 'Oliveira', 'Souza', 'Rodrigues', 'Ferreira', 'Alves',
+          'Pereira', 'Lima', 'Gomes', 'Costa', 'Ribeiro', 'Martins', 'Carvalho',
+          'Rocha', 'Almeida', 'Lopes', 'Soares', 'Fernandes', 'Vieira', 'Barbosa',
+          'Araújo', 'Nascimento', 'Azevedo', 'Moreira', 'Cardoso', 'Teixeira',
+          'Reis', 'Ramos', 'Freitas', 'Machado', 'Monteiro', 'Campos'
+        ];
+        
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName1 = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const lastName2 = lastNames[Math.floor(Math.random() * lastNames.length)];
+        
+        return `${firstName} ${lastName1} ${lastName2}`;
+      }
+
+      // Generate email from name
+      function generateEmailFromName(name) {
+        const domains = ['gmail.com', 'hotmail.com', 'yahoo.com.br', 'outlook.com', 'uol.com.br'];
+        const domain = domains[Math.floor(Math.random() * domains.length)];
+        
+        // Convert name to email format
+        const cleanName = name
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '') // Remove accents
+          .replace(/\s+/g, '.')
+          .replace(/[^a-z.]/g, '');
+        
+        const randomNumber = Math.floor(Math.random() * 999) + 1;
+        
+        return `${cleanName}${randomNumber}@${domain}`;
+      }
+
+      // Generate random phone
+      function generateRandomPhone() {
+        const areaCodes = ['11', '21', '31', '41', '51', '61', '71', '81', '85', '92'];
+        const areaCode = areaCodes[Math.floor(Math.random() * areaCodes.length)];
+        
+        // Generate 9-digit number (first digit is 9 for mobile)
+        let number = '9';
+        for (let i = 0; i < 8; i++) {
+          number += Math.floor(Math.random() * 10);
+        }
+        
+        return areaCode + number;
+      }
+
+      // Generate complete customer data
+      function generateCustomerData() {
+        const name = generateRandomName();
+        return {
+          name: name,
+          document: generateValidCPF(),
+          email: generateEmailFromName(name),
+          phone: generateRandomPhone()
+        };
+      }
+
+      // Show notification
+      function showNotification(message, type = 'info') {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: ${type === 'error' ? '#ef4444' : type === 'success' ? '#10b981' : '#3b82f6'};
+          color: white;
+          padding: 15px 20px;
+          border-radius: 8px;
+          font-weight: 600;
+          z-index: 10000;
+          animation: slideIn 0.3s ease;
+        `;
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.remove();
+        }, 5000);
+      }
+
+      // Add CSS animation
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes slideIn {
+          from { transform: translateX(100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+      `;
+      document.head.appendChild(style);
+
+
+
+      // Preset value selection
+      document.querySelectorAll(".donation-value-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          document.querySelectorAll(".donation-value-btn").forEach((b) => b.classList.remove("active"));
+          this.classList.add("active");
+          selectedAmount = parseInt(this.dataset.value);
+          isCustomAmount = false;
+          document.getElementById("customAmount").value = "";
+          updateSelectedAmount();
+          document.getElementById("continueBtn").disabled = false;
+        });
+      });
+
+      // Custom amount input
+      const customInput = document.getElementById("customAmount");
+      customInput.addEventListener("input", function () {
+        let value = this.value.replace(/[^\d]/g, "");
+
+        if (value === "") {
+          selectedAmount = 0;
+          isCustomAmount = false;
+          document.getElementById("continueBtn").disabled = true;
+        } else {
+          document.querySelectorAll(".donation-value-btn").forEach((b) => b.classList.remove("active"));
+          selectedAmount = parseInt(value);
+          isCustomAmount = true;
+          document.getElementById("continueBtn").disabled = selectedAmount < 5;
+        }
+
+        updateSelectedAmount();
+      });
+
+      // Update selected amount display
+      function updateSelectedAmount() {
+        const selectedAmountEl = document.getElementById("selectedAmount");
+        const selectedValueSpan = document.getElementById("selectedValue");
+        
+        if (selectedAmount > 0) {
+          selectedValueSpan.textContent = formatCurrency(selectedAmount);
+          selectedAmountEl.style.display = "block";
+        } else {
+          selectedAmountEl.style.display = "none";
+        }
+      }
+
+      // Continue button - Generate PIX directly
+      document.getElementById("continueBtn").addEventListener("click", async function () {
+        if (selectedAmount > 0) {
+          // Show loading
+          const originalContent = this.innerHTML;
+          this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> GERANDO PIX...';
+          this.disabled = true;
+
+          try {
+            // Generate customer data automatically
+            const customerData = generateCustomerData();
+            const utmString = generateUtmString();
+            
+            console.log('Dados gerados automaticamente:', customerData);
+            console.log('UTM capturado da URL:', utmString);
+
+            // Generate PIX
+            const pixData = await generatePixCode(customerData, selectedAmount);
+            
+            if (pixData.pixCode && pixData.transactionId) {
+              // Hide button section and show PIX interface
+              this.style.display = "none";
+              document.getElementById("pixPayment").style.display = "block";
+              
+              // Update PIX interface
+              document.getElementById("paymentAmount").textContent = formatCurrency(selectedAmount);
+              document.getElementById("pixCodeInput").value = pixData.pixCode;
+              
+              // Store transaction ID
+              currentTransactionId = pixData.transactionId;
+              
+              // Start monitoring payment
+              startPaymentMonitoring(pixData.transactionId);
+              
+              // Scroll to PIX interface
+              document.getElementById("pixPayment").scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+              });
+
+              showNotification('Código PIX gerado com sucesso!', 'success');
+            } else {
+              throw new Error('Dados do PIX não recebidos');
+            }
+          } catch (error) {
+            console.error('Error generating PIX:', error);
+            showNotification('Erro ao gerar código PIX. Tente novamente.', 'error');
+            
+            // Restore button
+            this.innerHTML = originalContent;
+            this.disabled = false;
+          }
+        }
+      });
+
+      // Generate PIX Code
+      async function generatePixCode(customerData, amount) {
+        try {
+          const response = await fetch(`${API_BASE_URL}${API_ENDPOINTS.generatePix}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              amount: amount,
+              description: `Doação para Ravi - Caminho de bem`,
+              customer: {
+                name: customerData.name,
+                document: customerData.document.replace(/[^\d]/g, ''),
+                phone: customerData.phone.replace(/[^\d]/g, ''),
+                email: customerData.email
+              },
+              item: {
+                title: `Doação para Ravi`,
+                price: amount,
+                quantity: 1
+              },
+              utm: generateUtmString()
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error('Error generating PIX:', error);
+          throw error;
+        }
+      }
+
+      // Check payment status
+      async function checkPaymentStatus(transactionId) {
+        try {
+          const response = await fetch(`${API_BASE_URL}${API_ENDPOINTS.verifyPayment}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              paymentId: transactionId
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error('Error checking payment status:', error);
+          throw error;
+        }
+      }
+
+      // Start payment monitoring
+      function startPaymentMonitoring(transactionId) {
+        if (paymentCheckInterval) {
+          clearInterval(paymentCheckInterval);
+        }
+
+        paymentCheckInterval = setInterval(async () => {
+          try {
+            const statusData = await checkPaymentStatus(transactionId);
+            
+            if (statusData.ok && statusData.status === 'completed') {
+              clearInterval(paymentCheckInterval);
+              showPaymentSuccess();
+              showNotification('Pagamento confirmado! Obrigado pela doação!', 'success');
+            }
+          } catch (error) {
+            console.error('Error monitoring payment:', error);
+          }
+        }, 5000); // Check every 5 seconds
+
+        // Stop monitoring after 10 minutes
+        setTimeout(() => {
+          if (paymentCheckInterval) {
+            clearInterval(paymentCheckInterval);
+            paymentCheckInterval = null;
+          }
+        }, 600000);
+      }
+
+      // Show payment success
+      function showPaymentSuccess() {
+        document.getElementById("pixPayment").style.display = "none";
+        document.getElementById("paymentSuccess").style.display = "block";
+        document.getElementById("successAmount").textContent = formatCurrency(selectedAmount);
+        
+        document.getElementById("paymentSuccess").scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+
+      // Copy PIX code
+      document.getElementById('copyPixCode').addEventListener('click', async function() {
+        const pixCode = document.getElementById('pixCodeInput').value;
+        
+        try {
+          await navigator.clipboard.writeText(pixCode);
+          showNotification('Código PIX copiado!', 'success');
+          
+          // Update button temporarily
+          const originalIcon = this.innerHTML;
+          this.innerHTML = '<i class="fas fa-check"></i>';
+          setTimeout(() => {
+            this.innerHTML = originalIcon;
+          }, 2000);
+        } catch (error) {
+          showNotification('Erro ao copiar código PIX', 'error');
+        }
+      });
+
+
+
+      // New donation button
+      document.getElementById('newDonationBtn').addEventListener('click', function() {
+        // Clear interval
+        if (paymentCheckInterval) {
+          clearInterval(paymentCheckInterval);
+          paymentCheckInterval = null;
+        }
+        
+        // Reset form
+        location.reload();
+      });
+
+      // Cleanup on page unload
+      window.addEventListener('beforeunload', function() {
+        if (paymentCheckInterval) {
+          clearInterval(paymentCheckInterval);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💖 Caminho de bem - Ajude o Ravi</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <img src="./images/LLF.png" alt="Caminho de bem" class="logo" />
+      </header>
+
+      <!-- Alert Section -->
+      <div class="alert-section">
+        <div class="alert">
+          <i class="fas fa-exclamation-triangle warning-icon"></i>
+          <p>
+            <strong>ATENÇÃO:</strong> Ravi está sofrendo agora. Ele tem apenas 3
+            anos e 4 meses.
+          </p>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <h2 class="main-title">Ele é só um bebê.</h2>
+
+        <p class="description">
+          Ravi tem 3 anos e 4 meses. Mas o que ele sente... é dor. Dor intensa,
+          todos os dias.
+        </p>
+
+        <!-- Baby Photos -->
+        <div class="photos-section">
+          <img
+            src="./images/ravi.jpeg"
+            alt="Foto do bebê Ravi"
+            class="baby-photo"
+          />
+        </div>
+
+        <p class="photo-caption">
+          Esse é o Ravi. Ele ainda usa fraldas. Mas sente uma dor que ninguém
+          deveria sentir.
+        </p>
+
+        <!-- Donation Button -->
+        <button class="donate-button">DOAR AGORA</button>
+
+        <p class="urgent-text">
+          <i class="fas fa-heart"></i> Por favor, não ignore. Ravi está
+          implorando por alívio.
+        </p>
+
+        <!-- Medical Image -->
+        <div class="medical-section">
+          <img
+            src="./images/doi.png"
+            alt="Imagem do ultrassom"
+            class="medical-image"
+          />
+          <p class="medical-caption">
+            Raio X mostra o que a dor não consegue esconder: urgência.
+          </p>
+        </div>
+
+        <!-- Medical Information -->
+        <div class="medical-info">
+          <p>
+            <strong>Ravi tem 3 anos e 4 meses</strong>, mas já viveu mais
+            internações do que aniversários.
+          </p>
+
+          <p>
+            Ele nasceu com <strong>cardiopatia congênita</strong> e, como se não
+            bastasse isso, também nasceu com uma má formação na parte genital.
+            Ele é só um ferimento e dor. Dor real. Constante.
+          </p>
+
+          <p>
+            Ele está internado, com o rostinho machucado e o corpo fragilizado.
+            Mas ainda luta. Porque ainda há uma chance.
+          </p>
+
+          <p>
+            Uma cirurgia pode aliviar sua dor e dar a ele uma vida com
+            dignidade. Mas custa <strong>R$ 50.000</strong> — e a mãe, Esther,
+            já vendeu tudo que tinha.
+          </p>
+
+          <p class="highlight">
+            Sem ajuda, Ravi continuará sofrendo.<br />Você pode mudar isso.
+          </p>
+        </div>
+
+        <!-- Second Donation Button -->
+        <button class="donate-button">DOAR AGORA</button>
+
+        <p class="help-text">
+          <i class="fas fa-hands-helping"></i> Ajude como puder. Até R$5 pode
+          ser a diferença entre dor e alívio.
+        </p>
+
+        <!-- PIX Information -->
+        <div class="pix-section">
+          <h3>Ou doe direto via PIX:</h3>
+          <div class="pix-info">
+            <span class="pix-key">caminhodebem@gmail.com</span>
+            <button class="copy-button"><i class="fas fa-copy"></i></button>
+          </div>
+          <p class="pix-caption">
+            <i class="fas fa-hands-helping"></i> Copie, cole no seu app e ajude
+            Ravi ainda hoje.
+          </p>
+        </div>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <img src="./images/LLF.png" alt="Caminho de bem" class="logo-footer" />
+      <p><strong>Mais formas de fazer a diferença.</strong></p>
+      <p class="footer-text">
+        Sua ajuda vai além do Ravi. Estamos aqui para transformar a vida de
+        muitas crianças que também sofrem em silêncio.
+      </p>
+      <p class="footer-link">
+        <a href="#">Política de privacidade</a>
+      </p>
+      <p class="footer-copyright">
+        © 2024 - Todos os direitos reservados • caminhodebem.com
+      </p>
+    </footer>
+
+    <script>
+      // Copy PIX key functionality
+      document
+        .querySelector(".copy-button")
+        .addEventListener("click", function () {
+          const pixKey = document.querySelector(".pix-key").textContent;
+          navigator.clipboard.writeText(pixKey).then(function () {
+            alert("Chave PIX copiada!");
+          });
+        });
+
+      // Donate button functionality
+      document.querySelectorAll(".donate-button").forEach((button) => {
+        button.addEventListener("click", function () {
+          // Get current URL parameters
+          const currentParams = window.location.search;
+
+          // Redirect to donation page with parameters
+          if (currentParams) {
+            window.location.href = `donate.html${currentParams}`;
+          } else {
+            window.location.href = "donate.html";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
